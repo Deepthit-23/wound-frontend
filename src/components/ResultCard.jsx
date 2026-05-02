@@ -1,25 +1,25 @@
 const SEVERITY_STYLES = {
   mild: {
     bg: 'bg-emerald-glow/10 border-emerald-glow/20',
-    badge: 'bg-emerald-glow/20 text-emerald-glow border border-emerald-glow/30',
+    badge: 'bg-emerald-glow text-white border border-emerald-glow/30',
     icon: 'text-emerald-glow',
     glow: 'shadow-emerald-glow/20'
   },
   moderate: {
     bg: 'bg-amber-glow/10 border-amber-glow/20',
-    badge: 'bg-amber-glow/20 text-amber-glow border border-amber-glow/30',
+    badge: 'bg-amber-glow text-white border border-amber-glow/30',
     icon: 'text-amber-glow',
     glow: 'shadow-amber-glow/20'
   },
   serious: {
     bg: 'bg-rose-glow/10 border-rose-glow/20',
-    badge: 'bg-rose-glow/20 text-rose-glow border border-rose-glow/30',
+    badge: 'bg-rose-glow text-white border border-rose-glow/30',
     icon: 'text-rose-glow',
     glow: 'shadow-rose-glow/20'
   },
   none: {
     bg: 'bg-slate-500/10 border-slate-500/20',
-    badge: 'bg-slate-500/20 text-slate-400 border border-slate-500/30',
+    badge: 'bg-slate-500 text-white border border-slate-500/30',
     icon: 'text-slate-400',
     glow: 'shadow-slate-500/20'
   },
@@ -41,7 +41,7 @@ export default function ResultCard({ result }) {
             </div>
             <div>
               <h2 className="text-3xl font-bold text-white mb-1">{result.wound_type}</h2>
-              <p className="text-slate-400 text-lg">AI Analysis Result</p>
+              <p className="text-text-light text-lg">AI Analysis Result</p>
             </div>
           </div>
           <span className={`text-sm font-semibold px-4 py-2 rounded-full ${styles.badge} shadow-lg backdrop-blur-sm`}>

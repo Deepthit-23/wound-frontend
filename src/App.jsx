@@ -15,7 +15,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-hero-pattern text-white relative overflow-hidden">
+    <div className="min-h-screen bg-slate-dark text-white relative overflow-hidden">
       {/* Subtle background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-radial from-blue-900/20 via-transparent to-transparent"></div>
 
@@ -39,7 +39,7 @@ export default function App() {
               </svg>
             </div>
           </div>
-          <p className="text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-text-light max-w-2xl mx-auto leading-relaxed">
             AI-powered wound detection & first aid guidance
           </p>
         </div>
@@ -83,7 +83,7 @@ export default function App() {
                   </div>
                 </div>
                 <p className="text-xl font-medium text-white mb-2">Analysing wound...</p>
-                <p className="text-slate-400">This may take a few seconds</p>
+                <p className="text-text-muted">This may take a few seconds</p>
               </div>
             </div>
           </div>

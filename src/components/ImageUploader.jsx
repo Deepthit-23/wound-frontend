@@ -42,10 +42,10 @@ export default function ImageUploader({ onImage }) {
         onClick={() => fileInputRef.current?.click()}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-300"></div>
-        <div className={`relative bg-white/5 backdrop-blur-xl border-2 border-dashed rounded-3xl p-12 text-center transition-all duration-300 ${
+        <div className={`relative bg-white/5 backdrop-blur-lg border-2 border-dashed rounded-3xl p-12 text-center transition-all duration-300 ${
           isDragOver
             ? 'border-blue-400 bg-blue-500/10 shadow-2xl shadow-blue-500/20'
-            : 'border-white/20 hover:border-blue-400/60 hover:bg-white/10'
+            : 'border-blue-500 hover:border-blue-400/60 hover:bg-white/10'
         }`}>
           <div className="space-y-6">
             <div className="w-20 h-20 mx-auto bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
@@ -56,7 +56,7 @@ export default function ImageUploader({ onImage }) {
 
             <div>
               <h3 className="text-2xl font-semibold text-white mb-2">Drop your image here</h3>
-              <p className="text-slate-400 text-lg">or click to browse your files</p>
+              <p className="text-text-light text-lg">or click to browse your files</p>
             </div>
 
             <div className="flex justify-center">
@@ -80,7 +80,7 @@ export default function ImageUploader({ onImage }) {
             cameraInput.onchange = (e) => handleFile(e.target.files[0]);
             cameraInput.click();
           }}
-          className="group relative px-8 py-4 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl text-white font-medium hover:bg-white/10 transition-all duration-300 shadow-lg hover:shadow-xl"
+          className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl text-white font-medium hover:shadow-xl transition-all duration-300 shadow-lg"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <div className="relative flex items-center space-x-3">

@@ -9,8 +9,8 @@ export default function Disclaimer({ text }) {
             </svg>
           </div>
           <div className="flex-1">
-            <h4 className="text-lg font-semibold text-amber-300 mb-2">Medical Disclaimer</h4>
-            <p className="text-amber-200 leading-relaxed text-lg">{text}</p>
+            <h4 className="text-lg font-semibold text-amber-200 mb-2">Medical Disclaimer</h4>
+            <p className="text-amber-100 leading-relaxed text-lg">{text}</p>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ export default function FirstAidSteps({ steps }) {
           </div>
           <div>
             <h3 className="text-2xl font-bold text-white">First Aid Instructions</h3>
-            <p className="text-slate-400 text-lg">Follow these steps carefully</p>
+            <p className="text-text-light text-lg">Follow these steps carefully</p>
           </div>
         </div>
 

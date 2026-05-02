@@ -6,10 +6,12 @@ export default {
     extend: {
       colors: {
         'navy': '#0A0F1E',
-        'slate-dark': '#1E293B',
+        'slate-dark': '#0D1117',
         'emerald-glow': '#10B981',
         'amber-glow': '#F59E0B',
         'rose-glow': '#F43F5E',
+        'text-light': '#CBD5E1',
+        'text-muted': '#94A3B8',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out forwards',
@@ -42,7 +44,7 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-pattern': 'linear-gradient(135deg, #0A0F1E 0%, #1E293B 100%)',
+        'hero-pattern': 'linear-gradient(135deg, #0A0F1E 0%, #0D1117 100%)',
       },
     },
   },
