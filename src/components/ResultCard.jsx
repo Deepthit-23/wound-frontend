@@ -1,23 +1,27 @@
 const SEVERITY_STYLES = {
   mild: {
-    bg: 'bg-green-50 border-green-200',
-    badge: 'bg-green-100 text-green-800 border border-green-300',
-    icon: 'text-green-600'
+    bg: 'bg-emerald-glow/10 border-emerald-glow/20',
+    badge: 'bg-emerald-glow/20 text-emerald-glow border border-emerald-glow/30',
+    icon: 'text-emerald-glow',
+    glow: 'shadow-emerald-glow/20'
   },
   moderate: {
-    bg: 'bg-yellow-50 border-yellow-200',
-    badge: 'bg-yellow-100 text-yellow-800 border border-yellow-300',
-    icon: 'text-yellow-600'
+    bg: 'bg-amber-glow/10 border-amber-glow/20',
+    badge: 'bg-amber-glow/20 text-amber-glow border border-amber-glow/30',
+    icon: 'text-amber-glow',
+    glow: 'shadow-amber-glow/20'
   },
   serious: {
-    bg: 'bg-red-50 border-red-200',
-    badge: 'bg-red-100 text-red-800 border border-red-300',
-    icon: 'text-red-600'
+    bg: 'bg-rose-glow/10 border-rose-glow/20',
+    badge: 'bg-rose-glow/20 text-rose-glow border border-rose-glow/30',
+    icon: 'text-rose-glow',
+    glow: 'shadow-rose-glow/20'
   },
   none: {
-    bg: 'bg-gray-50 border-gray-200',
-    badge: 'bg-gray-100 text-gray-800 border border-gray-300',
-    icon: 'text-gray-600'
+    bg: 'bg-slate-500/10 border-slate-500/20',
+    badge: 'bg-slate-500/20 text-slate-400 border border-slate-500/30',
+    icon: 'text-slate-400',
+    glow: 'shadow-slate-500/20'
   },
 };
 
@@ -25,35 +29,38 @@ export default function ResultCard({ result }) {
   const styles = SEVERITY_STYLES[result.severity] || SEVERITY_STYLES.none;
 
   return (
-    <div className={`rounded-2xl border p-6 shadow-lg ${styles.bg} ${styles.border}`}>
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center space-x-3">
-          <div className={`p-2 rounded-lg ${styles.bg}`}>
-            <svg className={`w-6 h-6 ${styles.icon}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold text-gray-800">{result.wound_type}</h2>
-            <p className="text-gray-600 text-sm">Wound Classification Result</p>
-          </div>
-        </div>
-        <span className={`text-sm font-semibold px-4 py-2 rounded-full ${styles.badge} shadow-sm`}>
-          {result.severity.charAt(0).toUpperCase() + result.severity.slice(1)} Severity
-        </span>
-      </div>
-
-      <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-        <div className="flex items-center justify-between">
-          <span className="text-gray-700 font-medium">AI Confidence Score</span>
-          <div className="flex items-center space-x-2">
-            <div className="w-24 bg-gray-200 rounded-full h-2">
-              <div
-                className="bg-blue-600 h-2 rounded-full transition-all duration-500"
-                style={{ width: `${result.confidence}%` }}
-              ></div>
+    <div className={`relative bg-white/5 backdrop-blur-xl border rounded-3xl p-8 shadow-2xl ${styles.bg} ${styles.border} ${styles.glow}`}>
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-3xl"></div>
+      <div className="relative">
+        <div className="flex items-start justify-between mb-6">
+          <div className="flex items-center space-x-4">
+            <div className={`p-3 rounded-2xl ${styles.bg} border ${styles.border}`}>
+              <svg className={`w-8 h-8 ${styles.icon}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
             </div>
-            <span className="text-lg font-bold text-blue-700">{result.confidence}%</span>
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-1">{result.wound_type}</h2>
+              <p className="text-slate-400 text-lg">AI Analysis Result</p>
+            </div>
+          </div>
+          <span className={`text-sm font-semibold px-4 py-2 rounded-full ${styles.badge} shadow-lg backdrop-blur-sm`}>
+            {result.severity.charAt(0).toUpperCase() + result.severity.slice(1)} Severity
+          </span>
+        </div>
+
+        <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-white font-semibold text-lg">AI Confidence Score</span>
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              {result.confidence}%
+            </span>
+          </div>
+          <div className="w-full bg-white/10 rounded-full h-3 overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-1000 ease-out shadow-lg"
+              style={{ width: `${result.confidence}%` }}
+            ></div>
           </div>
         </div>
       </div>
