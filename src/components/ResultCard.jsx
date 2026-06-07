@@ -1,30 +1,70 @@
-const SEVERITY_BADGE = {
-  mild:     'border-green-400 text-green-600 bg-green-50',
-  moderate: 'border-yellow-400 text-yellow-600 bg-yellow-50',
-  serious:  'border-red-400 text-red-600 bg-red-50',
-  none:     'border-slate-300 text-slate-500 bg-slate-50',
+import { useState, useEffect } from 'react';
+
+const SEVERITY_CONFIG = {
+  mild:     { borderColor: '#16A34A', badge: { background: '#16A34A' } },
+  moderate: { borderColor: '#D97706', badge: { background: '#D97706' } },
+  serious:  { borderColor: '#DC2626', badge: { background: '#DC2626' } },
+  none:     { borderColor: '#475569', badge: { background: '#475569' } },
 };
 
 export default function ResultCard({ result }) {
-  const badge = SEVERITY_BADGE[result.severity] || SEVERITY_BADGE.none;
+  const [barWidth, setBarWidth] = useState(0);
+  const cfg = SEVERITY_CONFIG[result.severity] || SEVERITY_CONFIG.none;
+
+  useEffect(() => {
+    const t = setTimeout(() => setBarWidth(result.confidence), 80);
+    return () => clearTimeout(t);
+  }, [result.confidence]);
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="flex items-center justify-between mb-3">
-        <h2 className="text-xl font-bold text-slate-800">{result.wound_type}</h2>
-        <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${badge}`}>
+    <div style={{
+      background: 'rgba(255,255,255,0.05)',
+      backdropFilter: 'blur(16px)',
+      border: '1px solid rgba(255,255,255,0.08)',
+      borderLeft: `3px solid ${cfg.borderColor}`,
+      borderRadius: 16,
+      padding: '20px',
+      boxShadow: '0 4px 24px rgba(0,0,0,0.3)',
+      animation: 'slide-up-fade 0.4s ease both',
+    }}>
+
+      {/* Wound type + severity badge */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
+        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 800, color: '#FFFFFF' }}>
+          {result.wound_type}
+        </h2>
+        <span style={{
+          ...cfg.badge,
+          color: '#FFF', fontSize: 11, fontWeight: 700,
+          padding: '4px 13px', borderRadius: 50,
+          textTransform: 'capitalize', letterSpacing: '0.04em',
+        }}>
           {result.severity}
         </span>
       </div>
 
-      <p className="text-sm text-slate-500 mb-3">Confidence: {result.confidence}%</p>
-
-      <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-        <div
-          className="h-full rounded-full bg-[#2563EB] transition-all duration-700"
-          style={{ width: `${result.confidence}%` }}
-        />
+      {/* Confidence label + value */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+        <span style={{ fontSize: 12, color: '#64748B', fontWeight: 500 }}>Confidence</span>
+        <span style={{ fontSize: 14, fontWeight: 700, color: '#FFFFFF' }}>{result.confidence}%</span>
       </div>
+
+      {/* Animated progress bar */}
+      <div style={{
+        width: '100%', height: 6,
+        background: 'rgba(255,255,255,0.08)',
+        borderRadius: 50, overflow: 'hidden',
+      }}>
+        <div style={{
+          height: '100%',
+          width: `${barWidth}%`,
+          background: 'linear-gradient(90deg,#3B82F6,#06B6D4)',
+          borderRadius: 50,
+          transition: 'width 1s ease-out',
+          boxShadow: '0 0 8px rgba(59,130,246,0.6)',
+        }} />
+      </div>
+
     </div>
   );
 }
